@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Operasi Aritmatika{% endblock %}
+{% block content %}
+<div class="max-w-3xl mx-auto bg-white p-4 rounded-lg shadow-md">
+  <h2 class="text-xl font-bold text-center text-gray-800 mb-4">Operasi Aritmatika pada Citra</h2>
+  <form action="/arithmetic/" enctype="multipart/form-data" method="post" class="space-y-4">
+    <div>
+      <label for="file" class="block text-sm font-medium text-gray-700">Pilih Gambar:</label>
+      <input type="file" name="file" id="file" accept="image/*" class="mt-1 block w-full border border-gray-300 rounded-md p-2" required />
+    </div>
+    <div>
+      <label for="operation" class="block text-sm font-medium text-gray-700">Pilih Operasi:</label>
+      <select name="operation" class="mt-1 block w-full border border-gray-300 rounded-md p-2" required>
+        <option value="add">Tambah</option>
+        <option value="subtract">Kurang</option>
+        <option value="max">Max</option>
+        <option value="min">Min</option>
+        <option value="inverse">Inverse</option>
+      </select>
+    </div>
+    <div>
+      <label for="value" class="block text-sm font-medium text-gray-700">Nilai Operasi (0-100):</label>
+      <input type="range" name="value" id="value" min="0" max="100" step="1" value="50" class="mt-1 w-full" />
+      <output id="valueOutput" class="block text-sm text-gray-600 mt-1">50</output>
+    </div>
+    <div class="text-center">
+      <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors duration-200">Lakukan Operasi</button>
+    </div>
+  </form>
+  <script>
+    const fileInput = document.getElementById('file');
+    fileInput.addEventListener('change', () => {
+      const file = fileInput.files[0];
+      if (file && !file.type.startsWith('image/')) {
+        alert('Harap unggah file gambar (jpg, png, dll.)');
+        fileInput.value = '';
+      }
+    });
+    const slider = document.getElementById("value");
+    const output = document.getElementById("valueOutput");
+    slider.addEventListener("input", () => output.textContent = slider.value);
+  </script>
+</div>
+{% endblock %}

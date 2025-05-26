@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Statistik Citra{% endblock %}
+{% block content %}
+<div class="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-md">
+  <h2 class="text-2xl font-bold text-center text-gray-800 mb-4">Statistik Citra</h2>
+  <form action="/statistics/" enctype="multipart/form-data" method="post" class="space-y-4">
+    <div>
+      <label for="file" class="block text-sm font-medium text-gray-700">Pilih Gambar:</label>
+      <input type="file" name="file" accept="image/*" class="mt-1 block w-full border border-gray-300 rounded-md p-2" required />
+    </div>
+    <div class="text-center">
+      <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Hitung Statistik</button>
+    </div>
+  </form>
+
+  {% if image_path %}
+  <div class="mt-6">
+    <h3 class="text-lg font-semibold text-gray-800 text-center">Hasil Statistik</h3>
+    <img src="{{ image_path }}" alt="Image for Statistics" class="mt-4 mx-auto rounded-md shadow-md max-w-full" />
+    <p class="text-center text-gray-600 mt-4">Rata-rata Intensitas Piksel: <span class="font-semibold">{{ mean_intensity }}</span></p>
+    <p class="text-center text-gray-600">Standar Deviasi (Kontras): <span class="font-semibold">{{ std_deviation }}</span></p>
+    <div class="text-center mt-4">
+      <a href="/" class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600">Kembali ke Home</a>
+    </div>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}JTK PCD 2024 - Nino erico apandi nainggolan - 231511058{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <style>
+      #sidebar {
+        transition: transform 0.3s ease-in-out;
+      }
+      .sidebar-item:hover {
+        background-color: #e0f2fe;
+        color: #1e40af;
+        transform: translateX(5px);
+        transition: all 0.2s ease;
+      }
+      @media (max-width: 640px) {
+        #sidebar {
+          transform: translateX(-100%);
+        }
+        #sidebar.open {
+          transform: translateX(0);
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 font-sans">
+    <nav class="bg-blue-600 text-white p-4 shadow-md fixed w-full top-0 z-20">
+      <div class="container mx-auto flex justify-between items-center">
+        <h1 class="text-xl font-bold">JTK PCD 2024 - Nino erico apandi nainggolan - 231511058</h1>
+        <button id="toggle-sidebar" class="sm:hidden text-white focus:outline-none">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <div class="flex pt-16">
+      <aside id="sidebar" class="w-48 bg-white h-screen shadow-md fixed sm:static z-10 sm:transform-none">
+        <div class="p-4">
+          <ul class="space-y-2">
+            <li><a href="/" class="sidebar-item block p-2 rounded text-blue-600 font-medium">Home</a></li>
+            <li><a href="/arithmetic/" class="sidebar-item block p-2 rounded text-blue-600">Operasi Aritmatika</a></li>
+            <li><a href="/logic/" class="sidebar-item block p-2 rounded text-blue-600">Operasi Logika</a></li>
+            <li><a href="/grayscale/" class="sidebar-item block p-2 rounded text-blue-600">Grayscale</a></li>
+            <li><a href="/histogram/" class="sidebar-item block p-2 rounded text-blue-600">Histogram</a></li>
+            <li><a href="/equalize/" class="sidebar-item block p-2 rounded text-blue-600">Equalisasi Histogram</a></li>
+            <li><a href="/specify/" class="sidebar-item block p-2 rounded text-blue-600">Spesifikasi Histogram</a></li>
+            <li><a href="/convolution/" class="sidebar-item block p-2 rounded text-blue-600">Konvolusi</a></li>
+            <li><a href="/fourier/" class="sidebar-item block p-2 rounded text-blue-600">Transformasi Fourier</a></li>
+            <li><a href="/noise_reduction/" class="sidebar-item block p-2 rounded text-blue-600">Reduksi Noise</a></li>
+            <li><a href="/statistics/" class="sidebar-item block p-2 rounded text-blue-600">Statistik Citra</a></li>
+            <li><a href="/rgb_array/" class="sidebar-item block p-2 rounded text-blue-600">Array RGB</a></li>
+          </ul>
+        </div>
+      </aside>
+
+      <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 sm:hidden hidden z-5"></div>
+
+      <main class="flex-1 p-4 sm:ml-48">
+        {% block content %}{% endblock %}
+      </main>
+    </div>
+
+    <script>
+      const toggleSidebar = document.getElementById('toggle-sidebar');
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('overlay');
+
+      toggleSidebar.addEventListener('click', () => {
+        sidebar.classList.toggle('open');
+        overlay.classList.toggle('hidden');
+      });
+
+      overlay.addEventListener('click', () => {
+        sidebar.classList.remove('open');
+        overlay.classList.add('hidden');
+      });
+    </script>
+  </body>
+</html>
