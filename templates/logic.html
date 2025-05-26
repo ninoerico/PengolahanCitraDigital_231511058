@@ -1,28 +1,79 @@
 {% extends "base.html" %}
 {% block title %}Operasi Logika{% endblock %}
 {% block content %}
-<div class="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-md">
-  <h2 class="text-2xl font-bold text-center text-gray-800 mb-4">Operasi Logika pada Citra</h2>
-  <form action="/logic/" enctype="multipart/form-data" method="post" class="space-y-4">
+<div class="max-w-3xl mx-auto bg-white p-4 rounded-lg shadow-md">
+  <h2 class="text-xl font-bold text-center text-gray-800 mb-4">
+    Operasi Logika pada Citra
+  </h2>
+  <form
+    action="/logic/"
+    enctype="multipart/form-data"
+    method="post"
+    class="space-y-4"
+  >
     <div>
-      <label for="file1" class="block text-sm font-medium text-gray-700">Pilih Gambar 1:</label>
-      <input type="file" name="file1" accept="image/*" class="mt-1 block w-full border border-gray-300 rounded-md p-2" required />
+      <label for="file1" class="block text-sm font-medium text-gray-700"
+        >Pilih Gambar Pertama:</label
+      >
+      <input
+        type="file"
+        name="file1"
+        id="file1"
+        accept="image/*"
+        class="mt-1 block w-full border border-gray-300 rounded-md p-2"
+        required
+      />
     </div>
     <div>
-      <label for="file2" class="block text-sm font-medium text-gray-700">Pilih Gambar 2 (Untuk operasi AND dan XOR):</label>
-      <input type="file" name="file2" accept="image/*" class="mt-1 block w-full border border-gray-300 rounded-md p-2" />
+      <label for="file2" class="block text-sm font-medium text-gray-700"
+        >Pilih Gambar Kedua (opsional untuk NOT):</label
+      >
+      <input
+        type="file"
+        name="file2"
+        id="file2"
+        accept="image/*"
+        class="mt-1 block w-full border border-gray-300 rounded-md p-2"
+      />
     </div>
     <div>
-      <label for="operation" class="block text-sm font-medium text-gray-700">Pilih Operasi:</label>
-      <select name="operation" class="mt-1 block w-full border border-gray-300 rounded-md p-2" required>
-        <option value="not">NOT</option>
+      <label for="operation" class="block text-sm font-medium text-gray-700"
+        >Pilih Operasi:</label
+      >
+      <select
+        name="operation"
+        id="operation"
+        class="mt-1 block w-full border border-gray-300 rounded-md p-2"
+        required
+      >
         <option value="and">AND</option>
         <option value="xor">XOR</option>
+        <option value="not">NOT</option>
       </select>
     </div>
     <div class="text-center">
-      <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Lakukan Operasi Logika</button>
+      <button
+        type="submit"
+        class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors duration-200"
+      >
+        Lakukan Operasi
+      </button>
     </div>
   </form>
+  <script>
+    const file1Input = document.getElementById("file1");
+    const file2Input = document.getElementById("file2");
+    [file1Input, file2Input].forEach((input) => {
+      if (input) {
+        input.addEventListener("change", () => {
+          const file = input.files[0];
+          if (file && !file.type.startsWith("image/")) {
+            alert("Harap unggah file gambar (jpg, png, dll.)");
+            input.value = "";
+          }
+        });
+      }
+    });
+  </script>
 </div>
 {% endblock %}

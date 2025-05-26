@@ -21,8 +21,6 @@ async def convolution_operation(request: Request, file: UploadFile = File(...), 
             "message": "Tidak dapat membaca gambar yang diunggah"
         })
     
-    gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    
     if kernel_type == "average":
         kernel = np.ones((3, 3), np.float32) / 9
     elif kernel_type == "sharpen":
@@ -35,8 +33,7 @@ async def convolution_operation(request: Request, file: UploadFile = File(...), 
             "message": "Tipe kernel tidak valid"
         })
     
-    modified_img = cv2.filter2D(gray_img, -1, kernel)
-    modified_img = cv2.cvtColor(modified_img, cv2.COLOR_GRAY2BGR)
+    modified_img = cv2.filter2D(img, -1, kernel)
     
     original_path = save_image(img, "original")
     modified_path = save_image(modified_img, "modified")
