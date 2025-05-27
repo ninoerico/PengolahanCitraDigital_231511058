@@ -1,23 +1,26 @@
 {% extends "base.html" %}
-{% block title %}Hasil Histogram Citra{% endblock %}
-{% block content %}
-<div class="max-w-4xl mx-auto bg-white p-4 rounded-lg shadow-md">
-  <h2 class="text-xl font-bold text-center text-gray-800 mb-4">Hasil Histogram Citra</h2>
-  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-    <div>
-      <h3 class="text-base font-semibold text-gray-800 text-center">Gambar Asli</h3>
-      <img src="{{ original_image_path }}" alt="Original Image" class="mt-2 w-full rounded-md shadow-md max-w-full sm:max-w-[10rem] mx-auto" />
-    </div>
-    <div>
-      <h3 class="text-base font-semibold text-gray-800 text-center">Histogram Grayscale</h3>
-      <img src="{{ grayscale_histogram_path }}" alt="Grayscale Histogram" class="mt-2 w-full rounded-md shadow-md max-w-full sm:max-w-[10rem] mx-auto" />
-      <h3 class="text-base font-semibold text-gray-800 text-center mt-4">Histogram Berwarna</h3>
-      <img src="{{ color_histogram_path }}" alt="Color Histogram" class="mt-2 w-full rounded-md shadow-md max-w-full sm:max-w-[10rem] mx-auto" />
-    </div>
-  </div>
-  <div class="text-center mt-4 space-x-4">
-    <a href="{{ input_url }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors duration-200">Input Ulang</a>
-    <a href="/" class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 transition-colors duration-200">Kembali ke Home</a>
-  </div>
-</div>
-{% endblock %}
+     {% block title %}Hasil Histogram Citra{% endblock %}
+     {% block content %}
+     <div class="max-w-4xl mx-auto bg-white p-4 rounded-md shadow-md">
+       <h2 class="text-xl font-bold text-center text-gray-800 mb-4">Hasil Histogram Citra</h2>
+       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+         <div>
+           <h3 class="text-base font-semibold sm:text-sm text-gray-800 text-center">Gambar Asli</h3>
+           <img src="{{ original_image_path }}" alt="Original Image" class="mt-2 w-full rounded-md shadow-md max-w-full sm:max-w-[10rem] mx-auto" />
+         </div>
+         <div>
+           <h3 class="text-base font-semibold sm:text-sm text-gray-800 text-center">Histogram Grayscale</h3>
+           <img src="{{ grayscale_histogram_path }}" alt="Grayscale Histogram" class="mt-2 w-full rounded-md shadow-md max-w-full sm:max-w-[10rem] mx-auto" />
+           <h3 class="text-base font-semibold text-gray-800 sm:text-sm text-center mt-4">Histogram Berwarna</h3>
+           <img src="{{ color_histogram_path }}" alt="Color Histogram" class="mt-2 w-full rounded-md shadow-md max-w-full sm:max-w-[10rem] mx-auto" />
+         </div>
+       </div>
+       <div class="text-center mt-4 space-x-4">
+         <a href="{{ original_image_path }}" class="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition-colors duration-200" download>Download Original</a>
+         <a href="{{ grayscale_histogram_path }}" class="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition-colors duration-200" download>Download Histogram Grayscale</a>
+         <a href="{{ color_histogram_path }}" class="bg-green-600-text-white px-4 py-2 rounded-md hover:bg-green-700 transition-colors duration-200" download>Download Histogram Berwarna</a>
+         <a href="{{ input_url }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors duration-200">Input Ulang</a>
+         <a href="/" class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 transition-colors duration-200">Kembali ke Home</a>
+       </div>
+     </div>
+     {% endblock %}
